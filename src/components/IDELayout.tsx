@@ -246,7 +246,7 @@ export default function IDELayout() {
                   </div>
                 </div>
               </div>
-              <div>
+              <div className="hidden md:block">
                 <h4 className="text-xs text-[#cccccc] mb-2">TOOLS</h4>
                 <div className="space-y-1">
                   {sidebarItems.map((item) => (
