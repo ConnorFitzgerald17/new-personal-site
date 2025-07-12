@@ -6,12 +6,8 @@ import {
   Search,
   GitBranch,
   Settings,
-  Play,
-  Terminal,
-  FileText,
   Code,
   User,
-  Mail,
   Github,
   Linkedin,
   Twitter,
@@ -19,21 +15,14 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
-  Link,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-interface IDELayoutProps {
-  children?: React.ReactNode;
-}
-
-export default function IDELayout({ children }: IDELayoutProps) {
+export default function IDELayout() {
   const [activeTab, setActiveTab] = useState("about");
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [openProjects, setOpenProjects] = useState<Set<string>>(new Set());
   const [projectsFolderOpen, setProjectsFolderOpen] = useState(false);
 
   const sidebarItems = [
@@ -439,13 +428,12 @@ export default function IDELayout({ children }: IDELayoutProps) {
                     specialized developer tools that empower users and optimize
                     business operations. I love diving deep into a problem,
                     architecting intuitive systems, and seeing them come to
-                    life. I'm committed to best practices in development and
-                    fostering environments where innovative ideas flourish.
+                    life. I&apos;m committed to best practices in development
+                    and fostering environments where innovative ideas flourish.
                     <br />
                     <br />
-                    When I'm not coding, I'm usually lost in a game, trying to
-                    figure out if my real-world problem-solving skills apply to
-                    dragons.
+                    When I&apos;m not coding, I&apos;m usually lost in a game,
+                    which is typically Old School Runescape or Counter Strike.
                   </p>
                 </div>
                 <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-4">
