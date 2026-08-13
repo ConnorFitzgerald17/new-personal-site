@@ -1,5 +1,5 @@
-import IDELayout from "@/components/IDELayout"
+import { Portfolio } from "@/components/Portfolio";
 
 export default function Home() {
-  return <IDELayout />
+  return <Portfolio />;
 }
