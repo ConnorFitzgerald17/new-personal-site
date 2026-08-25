@@ -1,6 +1,25 @@
 import type { Metadata } from "next";
+import { Bricolage_Grotesque, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/app/providers";
+
+const grotesk = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-grotesk",
+});
+
+const serif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
   title: "Connor Fitzgerald — Full-stack developer",
@@ -20,7 +39,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${grotesk.variable} ${serif.variable} ${mono.variable}`}
+    >
       <body>
         <Providers>{children}</Providers>
       </body>

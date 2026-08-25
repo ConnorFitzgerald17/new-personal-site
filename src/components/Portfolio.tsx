@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowDownRight, ArrowUpRight, Github, Linkedin } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Github, Linkedin } from "lucide-react";
 
 const work = [
   {
@@ -73,6 +73,21 @@ const skillGroups = [
   },
 ];
 
+function TickerGroup({ hidden = false }: { hidden?: boolean }) {
+  return (
+    <div className="ticker__group" aria-hidden={hidden || undefined}>
+      {skillGroups.flatMap((group) =>
+        group.skills.map((skill) => (
+          <span className="ticker__item" key={`${group.label}-${skill}`}>
+            {skill}
+            <span className="ticker__star" aria-hidden="true">✦</span>
+          </span>
+        )),
+      )}
+    </div>
+  );
+}
+
 export function Portfolio() {
   const [progress, setProgress] = useState(0);
 
@@ -109,158 +124,206 @@ export function Portfolio() {
   }, []);
 
   return (
-    <main className="resume" id="top">
+    <>
       <a className="skip-link" href="#work">Skip to selected work</a>
       <div className="progress" style={{ transform: `scaleX(${progress})` }} aria-hidden="true" />
 
-      <header className="resume-nav">
-        <a href="#top" className="monogram" aria-label="Connor Fitzgerald, home">CF</a>
-        <p>Portfolio / Résumé</p>
-        <nav aria-label="Primary navigation">
-          <a href="#profile">Profile</a>
-          <a href="#work">Work</a>
-          <a href="#skills">Skills</a>
-        </nav>
-        <p className="resume-nav__edition">Selected work · 2026</p>
+      <header className="site-nav">
+        <div className="shell site-nav__inner">
+          <a href="#top" className="monogram" aria-label="Connor Fitzgerald, home">
+            CF<span className="dot-accent">.</span>
+          </a>
+          <nav className="site-nav__links" aria-label="Primary navigation">
+            <a href="#profile">Profile</a>
+            <a href="#work">Work</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
       </header>
 
-      <section className="resume-hero" aria-labelledby="name">
-        <div className="resume-hero__label hero-animate">
-          <span>Full-stack developer</span>
-          <span>Ontario, Canada</span>
-        </div>
-
-        <h1 id="name" aria-label="Connor Fitzgerald">
-          <span className="name-line name-line--first">Connor</span>
-          <span className="name-line name-line--last">Fitzgerald<span className="name-dot">.</span></span>
-        </h1>
-
-        <div className="resume-hero__foot hero-animate">
-          <p>
-            I design and build useful web products—from the first rough idea
-            through interface, infrastructure, launch, and iteration.
+      <main id="top">
+        <section className="hero shell" aria-labelledby="name">
+          <p className="hero__kicker rise rise--1">
+            Connor Fitzgerald
+            <span aria-hidden="true">·</span>
+            <span>Full-stack developer</span>
+            <span aria-hidden="true">·</span>
+            <span>Ontario, Canada</span>
           </p>
-          <a href="#profile" className="down-link">
-            Read résumé <ArrowDownRight aria-hidden="true" />
-          </a>
-        </div>
-      </section>
 
-      <section className="profile-block" id="profile" aria-labelledby="profile-title">
-        <aside className="section-aside" data-reveal>
-          <p className="section-number">01</p>
-          <p>Professional profile</p>
-        </aside>
-        <div className="profile-copy" data-reveal>
-          <p className="profile-copy__lead" id="profile-title">
-            Product-minded developer with a bias toward clear interfaces,
-            dependable systems, and shipping the whole thing.
+          <h1 className="hero__title rise rise--2" id="name">
+            I design and build <em>useful web products.</em>
+          </h1>
+
+          <p className="hero__intro rise rise--3">
+            From the first rough idea through interface, infrastructure,
+            launch, and iteration.
           </p>
-          <div className="profile-copy__columns">
-            <p>
-              I work across product strategy, frontend, backend, integrations,
-              and automation. That range lets me take ownership of a problem
-              instead of handing it off at every layer.
-            </p>
-            <p>
-              My work spans SaaS, municipal software, developer tools, local
-              editorial products, and conversion-focused business websites.
-              The common thread is practical software that earns its place.
-            </p>
-          </div>
-          <div className="profile-facts">
-            <div><span>Focus</span><strong>Full-stack product development</strong></div>
-            <div><span>Approach</span><strong>Strategy → design → code → growth</strong></div>
-            <div><span>Interests</span><strong>AI, automation, games & useful tools</strong></div>
-          </div>
-        </div>
-      </section>
 
-      <section className="work-block" id="work" aria-labelledby="work-title">
-        <div className="work-heading" data-reveal>
-          <aside className="section-aside">
-            <p className="section-number">02</p>
-            <p>Selected work</p>
-          </aside>
-          <div>
-            <h2 id="work-title">Projects &amp;<br /><em>practice.</em></h2>
-            <p>A selection of live products, platforms, publications, and client-facing work.</p>
+          <div className="hero__actions rise rise--4">
+            <a className="btn btn--solid" href="#work">
+              Selected work <ArrowDown aria-hidden="true" />
+            </a>
+            <a className="btn btn--ghost" href="#contact">
+              Get in touch
+            </a>
+          </div>
+        </section>
+
+        <div className="ticker">
+          <div className="ticker__track">
+            <TickerGroup />
+            <TickerGroup hidden />
           </div>
         </div>
 
-        <div className="work-list">
-          {work.map((item, index) => (
-            <article className="work-row" data-reveal key={item.title}>
-              <a href={item.href} target="_blank" rel="noreferrer" aria-label={`Visit ${item.title}`}>
+        <section className="section shell" id="profile" aria-labelledby="profile-title">
+          <div data-reveal>
+            <p className="section__index">
+              <span>(01)</span>
+              <small>Professional profile</small>
+            </p>
+          </div>
+          <div className="profile">
+            <p className="profile__lead" id="profile-title" data-reveal>
+              Product-minded developer with a bias toward clear interfaces,
+              dependable systems, and <em>shipping the whole thing.</em>
+            </p>
+            <div className="profile__aside" data-reveal>
+              <p>
+                I work across product strategy, frontend, backend, integrations,
+                and automation. That range lets me take ownership of a problem
+                instead of handing it off at every layer.
+              </p>
+              <p>
+                My work spans SaaS, municipal software, developer tools, local
+                editorial products, and conversion-focused business websites.
+                The common thread is practical software that earns its place.
+              </p>
+            </div>
+          </div>
+          <div className="facts" data-reveal>
+            <div className="fact">
+              <span>Focus</span>
+              <strong>Full-stack product development</strong>
+            </div>
+            <div className="fact">
+              <span>Approach</span>
+              <strong>Strategy → design → code → growth</strong>
+            </div>
+            <div className="fact">
+              <span>Interests</span>
+              <strong>AI, automation, games &amp; useful tools</strong>
+            </div>
+          </div>
+        </section>
+
+        <section className="section shell" id="work" aria-labelledby="work-title">
+          <div className="section__head" data-reveal>
+            <div>
+              <p className="section__index">
+                <span>(02)</span>
+                <small>Selected work</small>
+              </p>
+              <h2 className="section__title" id="work-title">
+                Projects &amp; <em>practice.</em>
+              </h2>
+            </div>
+            <p className="section__note">
+              A selection of live products, platforms, publications, and
+              client-facing work.
+            </p>
+          </div>
+
+          <div className="work-list">
+            {work.map((item, index) => (
+              <a
+                className="work-row"
+                data-reveal
+                key={item.title}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Visit ${item.title}`}
+              >
                 <span className="work-row__index">{String(index + 1).padStart(2, "0")}</span>
-                <div className="work-row__title">
-                  <p>{item.type}</p>
+                <div>
+                  <p className="work-row__type">{item.type}</p>
                   <h3>{item.title}</h3>
+                  <p className="work-row__desc">{item.description}</p>
+                  <p className="work-row__scope">{item.scope.join(" / ")}</p>
                 </div>
-                <p className="work-row__description">{item.description}</p>
-                <ul className="work-row__scope" aria-label={`${item.title} focus areas`}>
-                  {item.scope.map((value) => <li key={value}>{value}</li>)}
-                </ul>
                 <span className="work-row__arrow"><ArrowUpRight aria-hidden="true" /></span>
               </a>
-            </article>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
 
-      <section className="skills-block" id="skills" aria-labelledby="skills-title">
-        <aside className="section-aside section-aside--inverse" data-reveal>
-          <p className="section-number">03</p>
-          <p>Capabilities</p>
-        </aside>
-        <div className="skills-content">
-          <div className="skills-intro" data-reveal>
-            <h2 id="skills-title">Comfortable across<br />the <em>stack.</em></h2>
-            <p>
+        <section className="section shell" id="skills" aria-labelledby="skills-title">
+          <div className="section__head" data-reveal>
+            <div>
+              <p className="section__index">
+                <span>(03)</span>
+                <small>Capabilities</small>
+              </p>
+              <h2 className="section__title" id="skills-title">
+                Comfortable across the <em>stack.</em>
+              </h2>
+            </div>
+            <p className="section__note">
               The goal is never to use every tool. It is to choose a sensible
               set, build cleanly, and leave the product easier to evolve.
             </p>
           </div>
-          <div className="skill-groups">
+
+          <div className="skill-list">
             {skillGroups.map((group, index) => (
-              <article className="skill-group" data-reveal key={group.label}>
+              <article className="skill-row" data-reveal key={group.label}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <h3>{group.label}</h3>
-                <ul>
-                  {group.skills.map((skill) => <li key={skill}>{skill}</li>)}
+                <ul className="tags" aria-label={`${group.label} skills`}>
+                  {group.skills.map((skill) => (
+                    <li className="tag" key={skill}>{skill}</li>
+                  ))}
                 </ul>
               </article>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      <footer className="resume-footer" id="contact">
-        <div className="resume-footer__top" data-reveal>
-          <aside className="section-aside section-aside--inverse">
-            <p className="section-number">04</p>
-            <p>Contact</p>
-          </aside>
-          <p className="resume-footer__prompt">Have a role, product, or difficult problem in mind?</p>
-        </div>
+      <footer className="footer shell" id="contact">
+        <p className="section__index" data-reveal>
+          <span>(04)</span>
+          <small>Contact</small>
+        </p>
+        <p className="footer__prompt" data-reveal>
+          Have a role, product, or difficult problem in mind?
+        </p>
         <a
-          className="resume-footer__cta"
+          className="footer__cta"
           href="https://www.linkedin.com/in/connor-fitz/"
           target="_blank"
           rel="noreferrer"
           data-reveal
         >
-          Let&apos;s talk<span>↗</span>
+          Let&apos;s talk
+          <ArrowUpRight aria-hidden="true" />
         </a>
-        <div className="resume-footer__bottom">
+        <div className="footer__bottom">
           <p>Connor Fitzgerald · © {new Date().getFullYear()}</p>
-          <div>
-            <a href="https://github.com/connorfitzgerald17" target="_blank" rel="noreferrer"><Github aria-hidden="true" /> GitHub</a>
-            <a href="https://www.linkedin.com/in/connor-fitz/" target="_blank" rel="noreferrer"><Linkedin aria-hidden="true" /> LinkedIn</a>
+          <div className="footer__social">
+            <a href="https://github.com/connorfitzgerald17" target="_blank" rel="noreferrer">
+              <Github aria-hidden="true" /> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/connor-fitz/" target="_blank" rel="noreferrer">
+              <Linkedin aria-hidden="true" /> LinkedIn
+            </a>
           </div>
-          <a href="#top">Back to top ↑</a>
+          <a className="footer__top" href="#top">Back to top ↑</a>
         </div>
       </footer>
-    </main>
+    </>
   );
 }
