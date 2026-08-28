@@ -37,6 +37,14 @@ const work = [
     href: "https://coachlycrm.com",
   },
   {
+    title: "Iron Path",
+    type: "Gaming companion",
+    description:
+      "A living progress journal for Old School RuneScape iron accounts, connecting quests, item grinds, banked XP, and collection milestones to live account data.",
+    scope: ["Product", "Next.js", "RuneLite", "Data sync"],
+    href: "https://www.ironpathosrs.com/",
+  },
+  {
     title: "Ottawa Burger Spot",
     type: "Editorial platform",
     description:
