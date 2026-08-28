@@ -38,10 +38,10 @@ const work = [
   },
   {
     title: "Iron Path",
-    type: "Gaming companion",
+    type: "Open-source gaming companion",
     description:
-      "A living progress journal for Old School RuneScape iron accounts, connecting quests, item grinds, banked XP, and collection milestones to live account data.",
-    scope: ["Product", "Next.js", "RuneLite", "Data sync"],
+      "A living progress journal for Old School RuneScape iron accounts, with a Java RuneLite plugin connecting quests, item grinds, banked XP, and collection milestones to live account data.",
+    scope: ["Next.js", "Java", "RuneLite plugin", "Data sync"],
     href: "https://www.ironpathosrs.com/",
   },
   {
